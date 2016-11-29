@@ -1,0 +1,83 @@
+from factual import Factual
+from flask import Flask, render_template, request, redirect, url_for
+from flask_modus import Modus
+import db
+import os
+
+
+
+app = Flask(__name__)
+api = Modus(app)
+
+
+
+
+key = app.config['KEY'] = os.environ.get('KEY')
+secret = app.config['SECRET'] = os.environ.get('SECRET')
+
+
+@app.route('/', methods=["POST", "GET"])
+def search():
+    if request.method == "POST":
+        def searching(val):
+            inpt = products.search(val)
+            id = inpt.data()[0]['factual_id']
+            data = f.get_row('products-cpg-nutrition', id)
+            if (data['category']) in category_list:
+                print(data['ingredients'])
+            else:
+                print("No products found")
+
+
+
+f = Factual(key,secret)
+
+products = f.table('products-cpg')
+
+
+
+def searching(val):
+    inpt = products.search(val)
+    id = inpt.data()[0]['factual_id']
+    data = f.get_row('products-cpg-nutrition', id)
+    if (data['category']) in category_list:
+        return (data['ingredients'])
+    else:
+        print("No products found")
+
+def search_brand(brand):
+    fix_word = brand.lower().title()
+    inpt = products.search(fix_word)
+    id = inpt.data()[0]['factual_id']
+    data = f.get_row('products-cpg-nutrition', id)
+    if (data['category']) in category_list:
+        return (data['brand'])
+    else:
+        print("No brands found")
+    
+
+
+category_list = ['Alcoholic Beverages', 'Baby Food', 'Baking Ingredients', 'Baking Products', 'Beans', 'Beverages', 'Bread',
+                 'Breakfast Foods', 'Butters', 'Cakes', 'Candy', 'Canned Food', 'Canned Fruits & Vegetables', 'Cheeses',
+                 'Chips', 'Chocolate', 'Condiments', 'Cookies', 'Cooking Oils & Sprays', 'Crackers', 
+                 'Crusts, Shells, Stuffing', 'Dairy & Dairy-Substitute Products', 'Dessert Toppings', 'Dips', 'Drink Mixers',
+                 'Drink Mixes', 'Eggs', 'Energy Drinks', 'Extracts, Herbs & Spices', 'Flours', 'Food', 'Food Storage', 
+                 'Frozen Foods', 'Fruit Snacks', 'Fruits', 'Garlic', 'Gift Sets', 'Gourmet Food Gifts', 'Grains',
+                 'Granola Bars', 'Home Brewing & Wine Making', 'Honey', 'Hot Cocoa', 'Ice Cream & Frozen Desserts',
+                 'Jams & Jellies', 'Juices', 'Lentils', 'Meat Alternatives', 'Meat, Poultry, Seafood Products',
+                 'Milk & Milk Substitutes', 'Noodles & Pasta', 'Nutritional Bars, Drinks, and Shakes', 'Nuts', 'Olives',
+                 'Packaged Foods', 'Party Mix', 'Pastries, Desserts & Pastry Products', 'Popcorn', 'Prepared Meals',
+                 'Pudding', 'Rice', 'Salad Dressings', 'Salsas', 'Sauces', 'Seasonings', 'Sexual Wellness',
+                 'Smoking Cessation', 'Snacks', 'Soda', 'Soups & Stocks', 'Sugars & Sweeteners', 'Syrups',
+                 'Tea & Coffee', 'Vegetables', 'Vinegars', 'Vitamins & Supplements', 'Water', 
+                 'Weight Loss Products & Supplements', 'Wheat Flours & Meals', 'Yogurt'] 
+#remove?: food storage, gift sets, sexual wellness, smoking cessation, vitamins & supplements, weight loss products & supplements
+
+
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True,port=4646)
