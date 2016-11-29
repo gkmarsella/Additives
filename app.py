@@ -1,8 +1,9 @@
 from factual import Factual
 from flask import Flask, render_template, request, redirect, url_for
 from flask_modus import Modus
-import db
 import os
+
+
 
 
 
@@ -16,20 +17,28 @@ key = app.config['KEY'] = os.environ.get('KEY')
 secret = app.config['SECRET'] = os.environ.get('SECRET')
 
 
-@app.route('/', methods=["POST", "GET"])
+@app.route('/search', methods=[ "GET"])
 def search():
-    if request.method == "POST":
-        def searching(val):
-            inpt = products.search(val)
-            id = inpt.data()[0]['factual_id']
-            data = f.get_row('products-cpg-nutrition', id)
-            if (data['category']) in category_list:
-                print(data['ingredients'])
-            else:
-                print("No products found")
+    return render_template("search.html")
+
+
+# show list of food items by name
+@app.route('/results', methods=["GET"])
+def results():
+    productData = products.search(request.args.get('search-food')).data()
+    return render_template("results.html", products=productData)
 
 
 
+
+
+
+@app.route('/index')
+def index():
+    return render_template("index.html", product=products) 
+
+
+# getting data from api
 f = Factual(key,secret)
 
 products = f.table('products-cpg')
@@ -54,7 +63,12 @@ def search_brand(brand):
         return (data['brand'])
     else:
         print("No brands found")
+
+def search_product(val):
+    return products.search(val).data()
+
     
+
 
 
 category_list = ['Alcoholic Beverages', 'Baby Food', 'Baking Ingredients', 'Baking Products', 'Beans', 'Beverages', 'Bread',
@@ -75,9 +89,7 @@ category_list = ['Alcoholic Beverages', 'Baby Food', 'Baking Ingredients', 'Baki
 
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+
 
 if __name__ == '__main__':
-    app.run(debug=True,port=4646)
+    app.run(debug=True,port=3000)

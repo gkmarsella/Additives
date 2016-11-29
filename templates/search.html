@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="{{url_for('search')}}" method="POST">
-	<input type="text" name="search-brand" placeholder="Enter a brand">
+<form action="{{url_for('results')}}" method="GET">
 	<input type="text" name="search-food" placeholder="Enter a food">
 	<input type="submit" value="Find additives">
 </form>

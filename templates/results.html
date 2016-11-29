@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<script src="static/App.js" type="text/javascript"></script>
+	<ul>
+		{% for product in products %}
+		<li class="food">	
+			<p><img class="foodimage" src="{{product['image_urls'][0]}}"></p>
+			<p><a class="foodname" href="">{{product['product_name']}}</a></p>			
+		</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
