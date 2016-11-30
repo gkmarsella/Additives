@@ -1,19 +1,18 @@
-document.addEventListener("DOMContentLoaded", function(){
+// document.addEventListener("DOMContentLoaded", function(){
 
-	$(".foodname").hover(function() {
-		// show the image
-	}, function() {
-		// hide the image
-	});
+// 	var eachFood = $(".food");
 
-	// for(var i=0; i < images.length; i++){
-	// 	var source = this.src;
-	// 	images.eq(i).hover(function(){
-	// 		this.src = "";
-	// 	});
-	// }
-      // $("li").hover(function() {
-      // 	$(".image").attr("src", "");
-      // });
+// 	for(var i=0; i < eachFood.length; i++){
+// 		var foundFood = eachFood.find("img");
 
-});
+// 		eachFood.eq(i).hover(
+// 			function() {
+// 			$(this).children("img").removeClass().addClass("show");
+// 		}, function() {
+// 			$(this).children("img").removeClass("show").addClass("foodimage");
+// 		});
+// 	}
+
+
+
+// });

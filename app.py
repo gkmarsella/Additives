@@ -2,10 +2,19 @@ from factual import Factual
 from flask import Flask, render_template, request, redirect, url_for
 from flask_modus import Modus
 import os
+import pandas as pd
 
 
-
-
+# getting data from excel sheet
+table = pd.read_excel('fdaadd.xls')
+ 
+# creating a list from data from fda excel sheet
+# additive_list = []
+# ad = table["FDA"]
+# for add in ad:
+#     additive_list.append(add)
+ad = table["additive"]
+additive_list = [add for add in ad]
 
 app = Flask(__name__)
 api = Modus(app)
@@ -25,13 +34,28 @@ def search():
 # show list of food items by name
 @app.route('/results', methods=["GET"])
 def results():
+
     productData = products.search(request.args.get('search-food')).data()
-    return render_template("results.html", products=productData)
+
+    list1 = [product.get('category') for product in productData]
+    categories = list(set(list1))
+
+    # to get ingredients 
+    for product in productData:
+        id = product['factual_id']
+        loweredIngredients = f.get_row('products-cpg-nutrition', id).get('ingredients')
+        if loweredIngredients:
+            product['ingredients'] = [x.upper() for x in loweredIngredients]
 
 
+    ad = table["additive"]
+    additive_list = [add for add in ad]
+    return render_template("results.html", products=productData, categories=categories, additive_list=additive_list)
 
-
-
+@app.route('/ingredients', methods=["GET"])
+def ingredients():
+    productData = products.search(request.args.get('factual_id')).data()
+    return render_template("ingredients.html", product=productData)
 
 @app.route('/index')
 def index():
@@ -44,6 +68,11 @@ f = Factual(key,secret)
 products = f.table('products-cpg')
 
 
+def get_product(val):
+    inpt = products.search(val)
+    id = inpt.data()[0]['factual_id']
+    data = f.get_row('products-cpg-nutrition', id)
+    return data
 
 def searching(val):
     inpt = products.search(val)
@@ -60,7 +89,7 @@ def search_brand(brand):
     id = inpt.data()[0]['factual_id']
     data = f.get_row('products-cpg-nutrition', id)
     if (data['category']) in category_list:
-        return (data['brand'])
+        return (data)
     else:
         print("No brands found")
 
@@ -87,9 +116,15 @@ category_list = ['Alcoholic Beverages', 'Baby Food', 'Baking Ingredients', 'Baki
                  'Weight Loss Products & Supplements', 'Wheat Flours & Meals', 'Yogurt'] 
 #remove?: food storage, gift sets, sexual wellness, smoking cessation, vitamins & supplements, weight loss products & supplements
 
-
-
-
-
 if __name__ == '__main__':
     app.run(debug=True,port=3000)
+
+
+# <!--        <li class="food list-group-item">   
+                
+#                     <img class="foodimage" src="{{product['image_urls'][0]}}" alt="{{product['product_name']}}">
+                
+#                 <p>
+#                     <a  class="foodname">{{product['product_name']}}</a>
+#                 </p>            
+#             </li> -->    
