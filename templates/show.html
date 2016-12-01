@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<script src="static/App.js" type="text/javascript"></script>
+	
+	{% for category in categories %}
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				{{category}}
+			</div>
+			<div class="panel-body">
+				<table class="table table-bordered">
+					<tr>
+						<td class="brand">Brand</td>	
+						<td class="name">Name</td>
+					</tr>
+					{% for product in products %}
+						{% if product['category'] == category and product.get("ingredients") %}
+							{% for i in product['ingredients'] %}
+								{% if i in additive_list %}
+									<tr class="rows">
+										<td><a  class="foodname">{{product['brand']}} </a></td>	
+										<td><a  class="foodname">{{product['product_name']}} {{i}}</a></td>
+												
+									{% endif %}
+								{% endfor %}
+									</tr>	
+						{% endif %}
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	{% endfor %}
+		
+	
+{% endblock %}

@@ -48,3 +48,10 @@ a:hover {
 	background-color: #d4cfcf;
 	color: black;
 }
+
+.searchBar {
+	display: block;
+	width: 200px;
+	border-style: solid;
+	border-color: black;
+}
