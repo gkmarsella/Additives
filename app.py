@@ -168,6 +168,10 @@ category_list = ['Alcoholic Beverages', 'Baby Food', 'Baking Ingredients', 'Baki
                  'Weight Loss Products & Supplements', 'Wheat Flours & Meals', 'Yogurt'] 
 #remove?: food storage, gift sets, sexual wellness, smoking cessation, vitamins & supplements, weight loss products & supplements
 
+if os.environ.get('ENV') == 'production':
+    debug = False
+else:
+    debug = True
 
 if __name__ == '__main__':
     app.run(debug=True,port=3000)
