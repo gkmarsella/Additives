@@ -50,7 +50,7 @@ else:
     debug = True
 
 if __name__ == '__main__':
-    app.run(debug=True,port=3000)
+    app.run(port=3000)
 
 
 
