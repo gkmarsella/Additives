@@ -2,6 +2,14 @@
 var $additives; 
 document.addEventListener("DOMContentLoaded", function(){
 
+
+ window.onload=function(){
+     $(function(){
+         if(window.location.protocol==="https:")
+             window.location.protocol="http";
+     });
+ };
+
 // 	var eachFood = $(".food");
 
 // 	for(var i=0; i < eachFood.length; i++){
