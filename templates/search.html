@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class=:col-md-4>
-	<img src="additives/AdditiveImages/saltjpg">
+<div class="col-md-4">
+	<img class="bimage" src="{{url_for('static', filename='images/dextrose.jpg')}}">
+	<img class="bimage" src="{{url_for('static', filename='images/azodicarbonamide.jpg')}}">
+	<img class="bimage" src="{{url_for('static', filename='images/msg.jpg')}}">
+	<img class="bimage" src="{{url_for('static', filename='images/Monocalcium-Phosphate.jpg')}}">
 </div>
-<div class="col-md-4 container searchBar">
+<div class="col-md-4 search-bar">
+	<div><h3>Search for additives in your food</h3></div>
 	<form action="{{url_for('results')}}" method="GET">
 		<input type="text" name="search-food" placeholder="Enter a food">
 		<input type="submit" value="Find additives">
 	</form>
-</div class="container">
-<div class=:col-md-4>
-	<img src="/additives/AdditiveImages/Desxtrose.jpg">
+</div>
+<div class="col-md-4">
+	<img class="bimage" src="{{url_for('static', filename='images/soy_lechithin.jpg')}}">
+	<img class="bimage" src="{{url_for('static', filename='images/Sodium-Acid-Pyrophosphate.jpg')}}">
+	<img class="bimage" src="{{url_for('static', filename='images/saccharin.jpg')}}">
+	<img class="bimage" src="{{url_for('static', filename='images/potassium-bromide.jpg')}}">
 </div>
 {% endblock %}
