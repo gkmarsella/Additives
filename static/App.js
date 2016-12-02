@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		$additives.toggleClass("additives-hidden");
 		if($("#" + upc).text() === ""){
 			$.ajax({
-			   url:"http://api.foodessentials.com/label?u=" + upc + "&sid=" + sid + "&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e",
+			   url:"//api.foodessentials.com/label?u=" + upc + "&sid=" + sid + "&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e",
 			   jsonp:"c", 
 			   dataType:'jsonp'
 			}).then(function(data){
