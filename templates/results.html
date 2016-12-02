@@ -1,25 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<script src="static/App.js" type="text/javascript"></script>
 	
-			<div class="panel-body">
-				<table class="table table-bordered">
-					<tr>
-						<td class="brand">Brand</td>	
-						<td class="name">Name</td>
-					</tr>
-					{% for s in search['productsArray'] %}
-						<tr class="rows">
-							<td><a  class="foodname">{{s['brand']}} </a></td>	
-							<td><a  class="foodname">{{s['product_name']}} {{i}}</a></td>
-						</tr>	
-					{% endfor %}
-				</table>
+	<div class="panel-body">
+		<table class="table table-bordered" data-sid="{{sid}}">
+			<tr>
+				<th class="brand">Brand</th>	
+				<th class="name">Name</th>
+				<th class="description">Description</th>
+			</tr>
+			{% for s in search['productsArray'] %}
 
-		
-	
+				<tr class="rows" data-upc="{{s['upc']}}">
+					<td>{{s['brand']}}</td>	
+					<td>{{s['product_name']}}</td>
+					<td>{{s['product_description']}}</td>					
+				</tr>
+				<tr class="additives additives-hidden">
+					<td colspan="3" value="additives" id="{{s['upc']}}"></td>
+				</tr>	
+			{% endfor %}
+		</table>
+	</div>
+
+			
 {% endblock %}
 
 
-<!-- group by product category -->
-<!-- look for names -->
+<!-- prod = requests.get("http://api.foodessentials.com/label?u=" + myprod + "&sid=" + sid +"&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e") -->

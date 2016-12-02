@@ -100,20 +100,19 @@ def results():
     # new session every time
     sid = get_sid()
 
-    search_dict = {"q": request.args.get('search-food').lower(), "n": 100, "sid": sid, "s": 1, "f": "json", "v": "2.00", "api_key": food_essentials_key}
+    search_dict = {"q": request.args.get('search-food').lower(), "n": 5, "sid": sid, "s": 1, "f": "json", "v": "2.00", "api_key": food_essentials_key}
+    search = requests.get("http://api.foodessentials.com/searchprods", params=search_dict).json()
+    return render_template("results.html", search=search, sid=sid)
+
+
+@app.route('/results2', methods=["GET"])
+def results2():
+    # new session every time
+    sid = get_sid()
+    
+    search_dict = {"u": {{s['upc']}} +  + ['upc'], "n": 5, "sid": sid, "f": "json", "appid": "Additives", "api_key": food_essentials_key}
     search = requests.get("http://api.foodessentials.com/searchprods", params=search_dict).json()
     return render_template("results.html", search=search)
-
-
-@app.route('/ingredients', methods=["GET"])
-def ingredients():
-    productData = products.search(request.args.get('factual_id')).data()
-    return render_template("ingredients.html", product=productData)
-
-@app.route('/index')
-def index():
-    return render_template("index.html", product=products) 
-
 
 # getting data from api
 f = Factual(key,secret)
@@ -170,20 +169,11 @@ category_list = ['Alcoholic Beverages', 'Baby Food', 'Baking Ingredients', 'Baki
 #remove?: food storage, gift sets, sexual wellness, smoking cessation, vitamins & supplements, weight loss products & supplements
 
 
-
-
 if __name__ == '__main__':
     app.run(debug=True,port=3000)
 
 
-# <!--        <li class="food list-group-item">   
-                
-#                     <img class="foodimage" src="{{product['image_urls'][0]}}" alt="{{product['product_name']}}">
-                
-#                 <p>
-#                     <a  class="foodname">{{product['product_name']}}</a>
-#                 </p>            
-#             </li> -->   
 
+# prod = requests.get("http://api.foodessentials.com/label?u=" + myupc + "&sid=" + sid + "&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e")
 
 

@@ -42,16 +42,26 @@ a:hover {
 }
 
 .name {
-	width: 80%;
+	width: 30%;
 }
+
+.decription {
+	width: 50%;
+}
+
 .rows {
 	background-color: #d4cfcf;
 	color: black;
 }
+
 
 .searchBar {
 	display: block;
 	width: 200px;
 	border-style: solid;
 	border-color: black;
+}
+
+.additives-hidden {
+	display: none;
 }

@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container searchBar">
+<div class=:col-md-4>
+	<img src="additives/AdditiveImages/saltjpg">
+</div>
+<div class="col-md-4 container searchBar">
 	<form action="{{url_for('results')}}" method="GET">
 		<input type="text" name="search-food" placeholder="Enter a food">
 		<input type="submit" value="Find additives">
 	</form>
 </div class="container">
+<div class=:col-md-4>
+	<img src="/additives/AdditiveImages/Desxtrose.jpg">
+</div>
 {% endblock %}
-
