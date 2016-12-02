@@ -30,7 +30,7 @@ def search():
 
 def get_sid():
     sid_dict = {"api_key": food_essentials_key, "f": "json", "v": "2.00"}
-    sid = requests.get("//api.foodessentials.com/createsession", params=sid_dict).json()["session_id"]
+    sid = requests.get("http://api.foodessentials.com/createsession", params=sid_dict).json()["session_id"]
     return sid
 
 @app.route('/results', methods=["GET"])
@@ -39,7 +39,7 @@ def results():
     sid = get_sid()
 
     search_dict = {"q": request.args.get('search-food').lower(), "n": 5, "sid": sid, "s": 1, "f": "json", "v": "2.00", "api_key": food_essentials_key}
-    search = requests.get("//api.foodessentials.com/searchprods", params=search_dict).json()
+    search = requests.get("http://api.foodessentials.com/searchprods", params=search_dict).json()
     return render_template("results.html", search=search, sid=sid)
 
 
