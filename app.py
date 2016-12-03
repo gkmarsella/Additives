@@ -1,5 +1,5 @@
 from factual import Factual
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_modus import Modus
 import os
 import pandas as pd
@@ -41,6 +41,12 @@ def results():
     search_dict = {"q": request.args.get('search-food').lower(), "n": 5, "sid": sid, "s": 1, "f": "json", "v": "2.00", "api_key": food_essentials_key}
     search = requests.get("http://api.foodessentials.com/searchprods", params=search_dict).json()
     return render_template("results.html", search=search, sid=sid)
+
+@app.route('/prodadditives', methods=["GET"])
+def prodadditives():
+    search_dict = {"u": request.args.get('u'), "sid": request.args.get('sid'), "appid": "Additives", "api_key": food_essentials_key, "f": "json"}
+    search = requests.get("http://api.foodessentials.com/label", params=search_dict).json()
+    return jsonify(search)   
 
 
 

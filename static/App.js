@@ -2,8 +2,7 @@
 var $additives; 
 document.addEventListener("DOMContentLoaded", function(){
 
-
- window.onload=function(){
+window.onload=function(){
      $(function(){
          if(window.location.protocol==="https:")
              window.location.protocol="http";
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 
-
 	$(".rows").click(function(e) {
 		var upc = $(this).data("upc");
 		var sid = $(".table").data("sid");
@@ -39,9 +37,9 @@ document.addEventListener("DOMContentLoaded", function(){
 		$additives.toggleClass("additives-hidden");
 		if($("#" + upc).text() === ""){
 			$.ajax({
-			   url:"//api.foodessentials.com/label?u=" + upc + "&sid=" + sid + "&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e",
-			   jsonp:"c", 
-			   dataType:'jsonp'
+			   url:"/prodadditives", 
+			   dataType:'json',
+			   data: {"u": upc, "sid": sid}
 			}).then(function(data){
 					var add_table = data.additives;
 					for(var i=0; i < add_table.length; i++){
@@ -58,3 +56,38 @@ document.addEventListener("DOMContentLoaded", function(){
 		
 
 	});
+
+
+
+	// function additiveDescription(val){
+	// 	if(val.additive_value > 0){
+	// 		var name = val.additive_name;
+	// 		var ingredients = val.additive_red_ingredients + val.additive_yellow_ingredients;
+	// 		return (name + ":::: " + ingredients);
+	// 	}
+	// }
+
+
+	// $(".rows").click(function(e) {
+	// 	var upc = $(this).data("upc");
+	// 	var sid = $(".table").data("sid");
+	// 	$additives = $(this).next(".additives");
+	// 	$additives.toggleClass("additives-hidden");
+	// 	if($("#" + upc).text() === ""){
+	// 		$.ajax({
+	// 		   url:"//api.foodessentials.com/label?u=" + upc + "&sid=" + sid + "&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e",
+	// 		   jsonp:"c", 
+	// 		   dataType:'jsonp'
+	// 		}).then(function(data){
+	// 				var add_table = data.additives;
+	// 				for(var i=0; i < add_table.length; i++){
+	// 					if(additiveDescription(add_table[i]) !== undefined){
+	// 						$("#" + upc).append("<div>"+ additiveDescription(add_table[i]) + "</div>");
+	// 					}
+						
+	// 				}
+	// 				console.log(data.additives);
+	// 		   });
+
+	// 	}
+	// 		});
