@@ -1,13 +1,8 @@
 
 var $additives; 
-document.addEventListener("DOMContentLoaded", function(){
+$(function(){
 
-window.onload=function(){
-     $(function(){
-         if(window.location.protocol==="https:")
-             window.location.protocol="http";
-     });
- };
+
 
 // 	var eachFood = $(".food");
 
@@ -24,9 +19,9 @@ window.onload=function(){
 
 	function additiveDescription(val){
 		if(val.additive_value > 0){
-			var name = val.additive_name;
+			var name = ("<div type='button' id='" + val.additive_name + "' data-container='body' data-toggle='popover' data-placement='right' title='about' data-content='this is where I will add content'>" + val.additive_name + "</div>");
 			var ingredients = val.additive_red_ingredients + val.additive_yellow_ingredients;
-			return (name + ":::: " + ingredients);
+			return (name + "        " + ingredients);
 		}
 	}
 
@@ -45,16 +40,15 @@ window.onload=function(){
 					for(var i=0; i < add_table.length; i++){
 						if(additiveDescription(add_table[i]) !== undefined){
 							$("#" + upc).append("<div>"+ additiveDescription(add_table[i]) + "</div>");
-						}
-						
+						}	
 					}
-					console.log(data.additives);
 			   });
 
 		}
 			});
-		
 
+
+	 $('[data-toggle="popover"]').popover();
 	});
 
 

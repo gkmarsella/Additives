@@ -38,7 +38,7 @@ def results():
     # new session every time
     sid = get_sid()
 
-    search_dict = {"q": request.args.get('search-food').lower(), "n": 5, "sid": sid, "s": 1, "f": "json", "v": "2.00", "api_key": food_essentials_key}
+    search_dict = {"q": request.args.get('search-food').lower(), "n": 2, "sid": sid, "s": 1, "f": "json", "v": "2.00", "api_key": food_essentials_key}
     search = requests.get("http://api.foodessentials.com/searchprods", params=search_dict).json()
     return render_template("results.html", search=search, sid=sid)
 
@@ -56,8 +56,7 @@ else:
     debug = True
 
 if __name__ == '__main__':
-    app.run(port=3000)
-
+    app.run(debug=True, port=3000)
 
 
 # prod = requests.get("http://api.foodessentials.com/label?u=" + myupc + "&sid=" + sid + "&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e")
