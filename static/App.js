@@ -19,8 +19,12 @@ $(function(){
 
 	function additiveDescription(val){
 		if(val.additive_value > 0){
-			var name = ("<div type='button' id='" + val.additive_name + "' data-container='body' data-toggle='popover' data-placement='right' title='about' data-content='this is where I will add content'>" + val.additive_name + "</div>");
+			var name = ("<div type='button' id='" + val.additive_name + "' data-container='body' data-toggle='modal' data-placement='right' title='about' data-content='this is where I will add content'>" + val.additive_name + "</div>");
 			var ingredients = val.additive_red_ingredients + val.additive_yellow_ingredients;
+			$('[data-toggle="popover"]').popover();
+			$('#myModal').on('shown.bs.modal', function () {
+			$('#myInput').focus();
+			});
 			return (name + "        " + ingredients);
 		}
 	}
@@ -48,7 +52,7 @@ $(function(){
 			});
 
 
-	 $('[data-toggle="popover"]').popover();
+	 
 	});
 
 
