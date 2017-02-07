@@ -39,7 +39,7 @@ def prodadditives():
 
 
 if os.environ.get('ENV') == 'production':
-    debug = False
+    debug = True
 else:
     debug = True
 
