@@ -25,7 +25,7 @@ $(function(){
 			$('#myModal').on('shown.bs.modal', function () {
 			$('#myInput').focus();
 			});
-			return (name + "        " + ingredients);
+			return (name + "    ------------------    " + ingredients);
 		}
 	}
 
