@@ -4,8 +4,8 @@
 	<div class="panel-body">
 		<table class="table table-bordered sortable" data-sid="{{sid}}">
 		<thead>
-<!-- 		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
-		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>  -->
+		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
+		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
 			<tr class="brand-name-desc">
 				<th class="brand sort" type="button">Name</th>	
 				<!-- <th class="name sort" type="button">ingredients</th> -->
@@ -14,6 +14,9 @@
 			{% for s in product_obj %}
 				<tr class="rows" data-upc="{{s[-12:]}}">
 					<td class="brand-name">{{s}}</td>
+				</tr>
+
+				<tr class="additives additives-hidden">
 					<td>{{product_obj[s]}}</td>
 				</tr>
 			{% endfor %}
