@@ -4,7 +4,6 @@ from flask_modus import Modus
 import sys
 import os
 import requests
-import openfoodfacts
 
 app = Flask(__name__)
 api = Modus(app)
@@ -19,22 +18,56 @@ def search():
 
 @app.route('/results', methods=["GET"])
 def results():
+
+    # searching for foods
     search_dict = {
         "q": request.args.get('search-food').lower(), 
         "sort":"n", 
+        "max": "10",
         "api_key": usda_key,
         "format": "json",
     }
     search_response = requests.get("https://api.nal.usda.gov/ndb/search/", params=search_dict)
     search = search_response.json()
-    return render_template("results.html", search=search)
 
-@app.route('/prodadditives', methods=["GET"])
-def prodadditives():
-    search_dict = {"u": request.args.get('u'), "sid": request.args.get('sid'), "appid": "Additives", "api_key": food_essentials_key, "f": "json"}
-    search = requests.get("http://api.foodessentials.com/label", params=search_dict).json()
-    return jsonify(search)   
+    # grabbing all product names
+    product_list = search['list']['item']
 
+    products = []
+    for i in product_list:
+        products.append(i['name'])
+
+    ndbno_list = []
+    for i in product_list:
+        ndbno_list.append(i['ndbno'])
+
+    ingredients = []
+    for i in ndbno_list:
+        ingredients.append(ingredient_lookup(i)['report']['food']['ing']['desc'])
+
+    # combined = list(zip(products, ingredients))
+
+    counter = 0
+    prodlength = len(products)
+    product_obj = {}
+    while prodlength > counter:
+        for i in products:
+            product_obj[i] = ingredients[counter]  
+            counter = counter+1
+
+    return render_template("results.html", search=search, product_obj=product_obj)
+
+def ingredient_lookup(ndbno):
+    # getting ndbno numbers
+    search_ndbno_dict = {
+        "ndbno": ndbno,
+        "type": "f",
+        "api_key": usda_key,
+        "format": "json",
+    }
+    search_ndbno_response = requests.get("https://api.nal.usda.gov/ndb/reports", params=search_ndbno_dict)
+    search_ndbno = search_ndbno_response.json()
+    return search_ndbno
 
 
 if os.environ.get('ENV') == 'production':
@@ -42,13 +75,5 @@ if os.environ.get('ENV') == 'production':
 else:
     debug = True
 
-def p(arg):
-  print(arg)
-  sys.stdout.flush()
-
-# brands = openfoodfacts.facets.get_brands()
-
-
 if __name__ == '__main__':
     app.run(debug=debug,port=3000)
-

@@ -4,30 +4,21 @@
 	<div class="panel-body">
 		<table class="table table-bordered sortable" data-sid="{{sid}}">
 		<thead>
-		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
-		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
+<!-- 		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
+		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>  -->
 			<tr class="brand-name-desc">
-				<th class="brand sort" type="button">Brand</th>	
-				<th class="name sort" type="button">Name</th>
-				<th class="description sort" type="button">Description</th>
+				<th class="brand sort" type="button">Name</th>	
+				<!-- <th class="name sort" type="button">ingredients</th> -->
 			</tr>
 		</thead>
-			{% for s in search['productsArray'] %}
-
-				<tr class="rows" data-upc="{{s['upc']}}">
-					<td class="brand-name">{{s['brand']}}</td>	
-					<td class="product-name">{{s['product_name']}}</td>
-					<td class="description-name">{{s['product_description']}}</td>					
+			{% for s in product_obj %}
+				<tr class="rows" data-upc="{{s[-12:]}}">
+					<td class="brand-name">{{s}}</td>
+					<td>{{product_obj[s]}}</td>
 				</tr>
-				<tr class="additives additives-hidden">
-					<td colspan="3" value="additives" id="{{s['upc']}}"></td>
-				</tr>	
 			{% endfor %}
 		</table>
 	</div>
 
 			
 {% endblock %}
-
-
-<!-- prod = requests.get("http://api.foodessentials.com/label?u=" + myprod + "&sid=" + sid +"&appid=Additives&f=json&api_key=f5hrgp2evbwm3rb7d6cxp95e") -->
