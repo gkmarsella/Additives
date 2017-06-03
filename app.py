@@ -56,12 +56,12 @@ def results():
             counter = counter+1
 
     # list of all additives in DB
-    additive_list = []
+    additive_list = {}
     for i in get_additives():
-        additive_list.append(i['name'])
+        additive_list[i['name']] = i['code']
 
 
-    return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list)
+    return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list, ingredients=ingredients)
 
 def ingredient_lookup(ndbno):
     # getting ndbno numbers
