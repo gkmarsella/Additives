@@ -55,7 +55,13 @@ def results():
             product_obj[i] = ingredients[counter]  
             counter = counter+1
 
-    return render_template("results.html", search=search, product_obj=product_obj)
+    # list of all additives in DB
+    additive_list = []
+    for i in get_additives():
+        additive_list.append(i['name'])
+
+
+    return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list)
 
 def ingredient_lookup(ndbno):
     # getting ndbno numbers
@@ -69,6 +75,25 @@ def ingredient_lookup(ndbno):
     search_ndbno = search_ndbno_response.json()
     return search_ndbno
 
+def get_additives():
+    response = requests.get("https://vx-e-additives.p.mashape.com/additives?locale=en&order=asc&sort=last_update",
+      headers={
+        "X-Mashape-Key": "xSEQIb1gTTmshMeAu6VHKTQwea6cp1vQLqsjsnv1Bgx0gMeyl6",
+        "Accept": "application/json"
+      }
+    )
+
+    return response.json()
+
+def additive_function(code):
+    response = requests.get("https://vx-e-additives.p.mashape.com/additives/951?locale=en",
+      headers={
+        "X-Mashape-Key": "xSEQIb1gTTmshMeAu6VHKTQwea6cp1vQLqsjsnv1Bgx0gMeyl6",
+        "Accept": "application/json"
+      }
+    )
+
+    return response.json()
 
 if os.environ.get('ENV') == 'production':
     debug = False

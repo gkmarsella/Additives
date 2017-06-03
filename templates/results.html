@@ -17,7 +17,14 @@
 				</tr>
 
 				<tr class="additives additives-hidden">
-					<td>{{product_obj[s]}}</td>
+					<td>
+					{% for i in additive_list %}
+						{% if i.upper() in product_obj[s] %}
+							{{i}}
+						{% endif %}
+					{% endfor %}
+
+					</td>
 				</tr>
 			{% endfor %}
 		</table>
