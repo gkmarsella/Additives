@@ -60,7 +60,6 @@ def results():
     for i in get_additives():
         additive_list[i['name']] = i['code']
 
-
     return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list, ingredients=ingredients)
 
 def ingredient_lookup(ndbno):
@@ -91,6 +90,17 @@ def additive_function(code):
         "X-Mashape-Key": "xSEQIb1gTTmshMeAu6VHKTQwea6cp1vQLqsjsnv1Bgx0gMeyl6",
         "Accept": "application/json"
       }
+    )
+
+    return response.json()
+
+def upc_lookup(upcode):
+    response = requests.get("http://api.walmartlabs.com/v1/items?",
+        headers={
+            "apiKey": "qkwugbctetqe4t6yweybcdx9",
+            "format": "json",
+            "upc": upcode
+        }
     )
 
     return response.json()

@@ -13,17 +13,20 @@
 		</thead>
 			{% for s in product_obj %}
 				<tr class="rows" data-upc="{{s[-12:]}}">
-					<td class="brand-name">{{s}}</td>
+					<td class="brand-name">{{s[:-19]}}</td>
 				</tr>
 
 				<tr class="additives additives-hidden">
-					<td>
+<!-- 					<td>
 					{% for i in additive_list %}
 						{% if i.upper() in product_obj[s] %}
 							{{i}}
 						{% endif %}
 					{% endfor %}
 
+					</td> -->
+					<td>
+						{{product_obj[s]}}
 					</td>
 				</tr>
 			{% endfor %}

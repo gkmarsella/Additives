@@ -105,9 +105,8 @@ h3 {
 
 
 #searchbar {
-	width: 750px;
-	margin-left: 200px;
-	margin-top: 20px
+	width: 70%;
+	margin-left: 15%;
 }
 
 .bardiv {
@@ -119,3 +118,7 @@ h3 {
 	height: 32px;
 	width: 34px;
 }	
+
+.searchbar {
+
+}
