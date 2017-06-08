@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<link rel="stylesheet" href="{{ url_for('static', filename='search.css')}}">
+
 <!-- Background -->
   <div id="bg">
     <img src="{{url_for('static', filename='images/pile.jpg')}}">
@@ -8,13 +10,13 @@
 
   <!-- Navbar -->
 
-<nav class="navbar transparent navbar-default navbar-right navbar-fixed-top">
+<nav class="navbar navbar-right navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header" id="nav-elements">
-			<a class="navbar-brand" href="{{url_for('search')}}">
+			<a id="navbar-icon" class="navbar-brand" href="{{url_for('search')}}">
 				<img class="icon" src="{{url_for('static', filename='images/icon.png')}}">
 			</a>
-			<button type="button" id="login-button" class="btn" data-toggle="modal" data-target=".bs-example-modal-lg">Log In</button>
+			<button type="button" class="login-button" class="btn" data-toggle="modal" data-target=".bs-example-modal-lg">Log In</button>
 		</div>
 	</div>
 </nav>
@@ -24,18 +26,17 @@
   <h1 id="title">Additive App</h1>
 
 	<div id="description-box">
-  		<h3 id="description">Additive App is designed to help you discover what additives are in the food you are eating and help you understand what it is and how it is and how safe it is. You can also log in to track what you are eating and any additives you would like to easily target in foods you search</h3>
+  		<h3 id="description">Additive App is designed to help you discover what additives are in the food you eat. Log in to track what foods you ate to get a list of all the additives you consumed and any additives you would like to easily target in your search</h3>
 	</div>
 
 
+		<!-- <div id="search-box"></div> -->
 
-	<div>
-		<div id="search-box"><h3 style="color: white;">Search for additives in your food</h3></div>
 			<div class="bardiv form-group">
-				<form action="{{url_for('results')}}" method="GET">
-					<input class=" searchbar form-control" style="height:40px;" id="searchbar" type="text" name="search-food" placeholder="Enter a food">
-					<input class="btn btn-primary btn-lg" align="center" style="display: block; margin-left: 45%; margin-top: 10px;" id="submitbutton" type="submit" value="Find additives">
+				<form action="{{url_for('results')}}" method="GET" class="form-wrapper cf">
+					<input type="text" name="search-food" placeholder="Enter a food" required>
+					<button type="submit">search</button>
 				</form>
 			</div>
-	</div>
+
 {% endblock %}

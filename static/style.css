@@ -156,11 +156,11 @@ h3 {
 
 #description-box {
 	width: 60%;
-	padding-top: 6%;
+	padding-top: 4%;
 }
 
 #search-box {
-	padding-top: 5%;
+	padding-top: 8%;
 }
 
 @media screen and (max-width: 650px) {      
@@ -180,16 +180,36 @@ body {
 	float: right;
 }
 
-#login-button {
+.login-button {
+	color: white;
+	background-color: rgba(255, 255, 255, 0);
+	border-color: white;
+	margin-top: 6%;
+	margin-right: 25px;
+    margin-top: 14px;
+    margin-left: 12px;
+}
+
+.login-button:hover {
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.search-button {
 	color: white;
 	background-color: rgba(255, 255, 255, 0);
 	border-color: white;
 	margin-top: 6%;
 }
 
-.navbar {
-   background-color: transparent;
-   background: transparent;
-   border-color: transparent;
+.navbar{
+    border: none;
+    border-radius: 0;
+    background-color: rgba(0,0,0,0.5);
 }
 
+#navbar-icon{
+    float: left;
+    padding: 11.5px 15px;
+    font-size: 19px;
+    height: 60px;
+} 
