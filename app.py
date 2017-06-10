@@ -22,6 +22,7 @@ def search():
 @app.route('/results', methods=["GET"])
 def results():
 
+
     # searching for foods
     search_dict = {
         "q": request.args.get('search-food').lower(), 
@@ -47,18 +48,24 @@ def results():
     for i in product_list:
         products.append(i['name'])
 
+    # counter for product_obj
+    prodlength = len(products)
+
     ndbno_list = []
     for i in product_list:
         ndbno_list.append(i['ndbno'])
 
     ingredients = []
     for i in ndbno_list:
-        ingredients.append(ingredient_lookup(i)['report']['food']['ing']['desc'])
+        try:
+            ingredients.append(ingredient_lookup(i)['report']['food']['ing']['desc'])
+        except (json.decoder.JSONDecodeError, KeyError) as e:
+            ingredients.append("No ingredients found")
 
     # combined = list(zip(products, ingredients))
 
+    
     counter = 0
-    prodlength = len(products)
     product_obj = {}
     while prodlength > counter:
         for i in products:
@@ -73,7 +80,6 @@ def results():
     return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list, ingredients=ingredients)
 
 def ingredient_lookup(ndbno):
-    # getting ndbno numbers
     search_ndbno_dict = {
         "ndbno": ndbno,
         "type": "f",
@@ -114,6 +120,12 @@ def upc_lookup(upcode):
     )
 
     return response.json()
+
+@app.route('/progress')
+def ajax_index():
+
+   for i in range(500):
+      print("%d" % i)
 
 if os.environ.get('ENV') == 'production':
     debug = False

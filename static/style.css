@@ -16,7 +16,7 @@ body {
 }
 
 .rows {
-	background-color: #457B9D;
+	/*background-color: #457B9D;*/
 	color: #F1FAEE;
 }
 
@@ -191,7 +191,7 @@ body {
 }
 
 .login-button:hover {
-	background-color: rgba(255, 255, 255, 1);
+	background-color: rgba(26, 24, 24, 0.51);
 }
 
 .search-button {
@@ -216,4 +216,27 @@ body {
 
 .new-search {
 	float: left;
+}
+
+
+/*TABLES*/
+
+#food-table {
+	width: 20%
+}
+
+.food-item {
+	color: white;
+}
+
+#food-list {
+	width: 25%;
+}
+
+.food-container {
+	padding-top: 3%;
+}
+
+.food-container:hover {
+	background-color: rgba(26, 24, 24, 0.51)
 }

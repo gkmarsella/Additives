@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+       <script>
+            $(function () { 
+                $("#content").load("/progress"); 
+            });
+       </script>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='search.css')}}">
 
 <!-- Background -->
-  <div id="bg">
-    <img src="{{url_for('static', filename='images/pile.jpg')}}">
-  </div>
+	<div id="bg">
+		<img src="{{url_for('static', filename='images/pile.jpg')}}">
+	</div>
 
   <!-- Navbar -->
 
