@@ -1,6 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-	
+
+  <div id="bg">
+    <img src="{{url_for('static', filename='images/pile.jpg')}}">
+  </div>
+
+  <!-- Navbar -->
+
+	<nav class="navbar navbar-right navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header" id="nav-elements">
+				<div class="bardiv form-group">
+					<form class="navbar-brand new-search" action="{{url_for('results')}}" method="GET" class="form-wrapper cf">
+						<input type="text" name="search-food" placeholder="Enter a food" required>
+						<button type="submit">search</button>
+					</form>
+				<a id="navbar-icon" class="navbar-brand" href="{{url_for('search')}}">
+					<img class="icon" src="{{url_for('static', filename='images/icon.png')}}">
+				</a>
+				<button type="button" class="login-button" class="btn" data-toggle="modal" data-target=".bs-example-modal-lg">Log In</button>
+			</div>
+		</div>
+	</nav>
+
 	<div class="panel-body">
 		<table class="table table-bordered sortable" data-sid="{{sid}}">
 		<thead>
@@ -8,7 +30,6 @@
 		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
 			<tr class="brand-name-desc">
 				<th class="brand sort" type="button">Name</th>	
-				<!-- <th class="name sort" type="button">ingredients</th> -->
 			</tr>
 		</thead>
 			{% for s in product_obj %}
@@ -17,16 +38,13 @@
 				</tr>
 
 				<tr class="additives additives-hidden">
-<!-- 					<td>
+					<td>
 					{% for i in additive_list %}
 						{% if i.upper() in product_obj[s] %}
 							{{i}}
 						{% endif %}
 					{% endfor %}
 
-					</td> -->
-					<td>
-						{{product_obj[s]}}
 					</td>
 				</tr>
 			{% endfor %}

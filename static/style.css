@@ -213,3 +213,7 @@ body {
     font-size: 19px;
     height: 60px;
 } 
+
+.new-search {
+	float: left;
+}

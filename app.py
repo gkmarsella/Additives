@@ -4,6 +4,9 @@ from flask_modus import Modus
 import sys
 import os
 import requests
+import urllib.request
+import json
+
 
 app = Flask(__name__)
 api = Modus(app)
@@ -27,11 +30,18 @@ def results():
         "api_key": usda_key,
         "format": "json",
     }
-    search_response = requests.get("https://api.nal.usda.gov/ndb/search/", params=search_dict)
-    search = search_response.json()
+
+    try:
+        search_response = requests.get("https://api.nal.usda.gov/ndb/search/", params=search_dict)
+        search = search_response.json()
+        product_list = search['list']['item']
+    except (json.decoder.JSONDecodeError, KeyError) as e:
+        no_results = request.args.get('search-food').lower()
+        return render_template("400.html", no_results=no_results)
+
 
     # grabbing all product names
-    product_list = search['list']['item']
+
 
     products = []
     for i in product_list:
