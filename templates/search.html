@@ -1,10 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-       <script>
-            $(function () { 
-                $("#content").load("/progress"); 
-            });
-       </script>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='search.css')}}">
 
@@ -31,7 +26,7 @@
   <h1 id="title">Additive App</h1>
 
 	<div id="description-box">
-  		<h3 id="description">Additive App is designed to help you discover what additives are in the food you eat. Log in to track what foods you ate to get a list of all the additives you consumed and any additives you would like to easily target in your search</h3>
+  		<h3 id="description">Food additives are added to products to help in preperation, preservation, add nutrients, or make the product more appealing. Some of these additives can be dangerous and should be avoided. Additive App helps you discover what additives are in the food you're eating.</h3>
 	</div>
 
 
