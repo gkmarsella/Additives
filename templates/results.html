@@ -5,6 +5,12 @@
     <img src="{{url_for('static', filename='images/pile.jpg')}}">
   </div>
 
+<div class="row">
+  <div class="col-8">col-8</div>
+  <div class="col-4">col-4</div>
+</div>
+
+
   <!-- Navbar -->
 
 	<nav class="navbar navbar-right navbar-fixed-top">
@@ -19,16 +25,75 @@
 		</div>
 	</nav>
 
-	<div id="food-list">
-		<ul style="list-style: none;">
+<div class="panel-body">
+  		<table class="table table-bordered sortable" data-sid="{{sid}}">
+  		<thead>
+  		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
+  		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
+  			<tr class="brand-name-desc">
+  				<th class="brand sort" type="button">Name</th>	
+ 				<!-- <th class="name sort" type="button">ingredients</th> -->
+  			</tr>
+		</thead>
 			{% for s in product_obj %}
-			<div class="food-container">
-				<li class="food-item">{{s[:-19]}}</li>
-			</div>
+				<tr class="rows">
+					<td class="brand-name">
+						{{s}}
+					</td>
+				</tr>
+
+		
+				<tr class="additives additives-hidden">
+					<td>
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									{{product_obj[s]}}
+								</div>
+						      	<div class="col">
+						      		<ul>
+									{% for i in additive_list %}
+										{% if i.upper() in product_obj[s] %}
+						      			<li>{{i}}</li>
+							      		{% endif %}
+							      	{% endfor %}
+						      		</ul>
+						      	</div>
+						    </div>
+						</div>
+					</td>
+				</tr>
 			{% endfor %}
-		</ul>
-	</div>
+		</table>
+	</div>	
 
+<!-- 				{% for s in product_obj %}
+				<tr class="rows" data-upc="{{s[-12:]}}" data-toggle="modal" data-target=".{{s[-12:]}}">
+					<td class="brand-name">
+						{{s}}
 
-			
+						<div class="modal {{s[-12:]}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+						  <div class="modal-dialog modal-lg" role="document">
+						    <div class="modal-content">
+						      <div class="col-6">{{product_obj[s]}}</div>
+								{% for i in s %}
+									{% if i in additive_list[i] %}
+						      		<div class="col-6">{{i}}</div>
+						      		{% endif %}
+						      	{% endfor %}
+
+						    </div>
+						  </div>
+						</div>
+					</td>
+				</tr> -->
+
+		
+<!-- 				<tr class="additives additives-hidden">
+					<td>
+						{{product_obj[s]}}
+					</td>
+				</tr>
+			{% endfor %} -->
+
 {% endblock %}
