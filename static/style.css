@@ -63,10 +63,9 @@ a:hover {
 	width: 50%;
 }
 
-/*.rows {
-	background-color: #d4cfcf;
-	color: black;
-}*/
+.rows {
+    background-color: rgba(0, 0, 0, 0.39);
+}
 
 .additives-hidden {
 	display: none;
@@ -97,8 +96,8 @@ h3 {
 /* for my additives table */
 
 .additives {
-	background-color: #f5f5f5;
-	color: #3B2323;
+    background-color: rgba(86, 52, 33, 0.62);
+    color: rgb(255, 255, 255);
 }
 
 

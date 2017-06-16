@@ -25,14 +25,13 @@
   		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
   		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
   			<tr class="brand-name-desc">
-  				<th class="brand sort" type="button">Name</th>	
  				<!-- <th class="name sort" type="button">ingredients</th> -->
   			</tr>
 		</thead>
 			{% for s in product_obj %}
 				<tr class="rows">
 					<td class="brand-name">
-						{{s}}
+						{{s[:-18]}}
 					</td>
 				</tr>
 
