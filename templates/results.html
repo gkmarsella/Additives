@@ -29,7 +29,7 @@
   			</tr>
 		</thead>
 			{% for s in product_obj %}
-				<tr class="rows">
+				<tr class="rows" style="width: inherit">
 					<td class="brand-name">
 						{{s[:-18]}}
 					</td>
@@ -40,10 +40,10 @@
 					<td>
 						<div class="container">
 							<div class="row">
-								<div class="col">
+								<div class="col-xs-6">
 									{{product_obj[s]}}
 								</div>
-						      	<div class="col">
+						      	<div class="col-xs-6">
 						      		<ul>
 									{% for i in additive_list %}
 										{% if i.upper() in product_obj[s] %}

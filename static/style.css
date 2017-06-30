@@ -224,6 +224,10 @@ body {
 	width: 20%
 }
 
+.container {
+	width: inherit;
+}
+
 /*.food-item {
 	color: white;
 }

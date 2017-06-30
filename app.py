@@ -1,6 +1,6 @@
-
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_modus import Modus
+from flask_login import LoginManager
 import sys
 import os
 import requests
@@ -120,12 +120,6 @@ def upc_lookup(upcode):
     )
 
     return response.json()
-
-@app.route('/progress')
-def ajax_index():
-
-   for i in range(500):
-      print("%d" % i)
 
 if os.environ.get('ENV') == 'production':
     debug = False
