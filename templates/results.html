@@ -5,28 +5,12 @@
     <img src="{{url_for('static', filename='images/pile.jpg')}}">
   </div>
 
-  <!-- Navbar -->
-
-	<nav class="navbar navbar-right navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header" id="nav-elements">
-				<div class="bardiv form-group">
-				<a id="navbar-icon" class="navbar-brand" href="{{url_for('search')}}">
-					<img class="icon" src="{{url_for('static', filename='images/icon.png')}}">
-				</a>
-				<button type="button" class="login-button" class="btn" data-toggle="modal" data-target=".bs-example-modal-lg">Log In</button>
-			</div>
-		</div>
-	</nav>
-
 <div class="panel-body">
   		<table class="table table-bordered sortable" data-sid="{{sid}}">
   		<thead>
   		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
   		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
-  			<tr class="brand-name-desc">
- 				<!-- <th class="name sort" type="button">ingredients</th> -->
-  			</tr>
+  			<tr class="brand-name-desc"></tr>
 		</thead>
 			{% for s in product_obj %}
 				<tr class="rows" style="width: inherit">
@@ -59,34 +43,5 @@
 			{% endfor %}
 		</table>
 	</div>	
-
-<!-- 				{% for s in product_obj %}
-				<tr class="rows" data-upc="{{s[-12:]}}" data-toggle="modal" data-target=".{{s[-12:]}}">
-					<td class="brand-name">
-						{{s}}
-
-						<div class="modal {{s[-12:]}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-						  <div class="modal-dialog modal-lg" role="document">
-						    <div class="modal-content">
-						      <div class="col-6">{{product_obj[s]}}</div>
-								{% for i in s %}
-									{% if i in additive_list[i] %}
-						      		<div class="col-6">{{i}}</div>
-						      		{% endif %}
-						      	{% endfor %}
-
-						    </div>
-						  </div>
-						</div>
-					</td>
-				</tr> -->
-
-		
-<!-- 				<tr class="additives additives-hidden">
-					<td>
-						{{product_obj[s]}}
-					</td>
-				</tr>
-			{% endfor %} -->
 
 {% endblock %}

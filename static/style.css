@@ -228,18 +228,10 @@ body {
 	width: inherit;
 }
 
-/*.food-item {
-	color: white;
-}
+/*MODAL*/
 
-#food-list {
-	width: 25%;
+.login-btn{
+	background-color: #e54040;
+	font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+	color: #fff;
 }
-
-.food-container {
-	padding-top: 3%;
-}
-
-.food-container:hover {
-	background-color: rgba(26, 24, 24, 0.51)
-}*/
