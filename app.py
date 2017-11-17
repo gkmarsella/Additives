@@ -15,6 +15,10 @@ api = Modus(app)
 
 usda_key = app.config['USDA_KEY'] = os.environ.get('USDA_KEY')
 
+mashape_key = app.config['MASHAPE_KEY'] = os.environ.get('MASHAPE_KEY')
+
+walmart_key = app.config['WALMART_KEY'] = os.environ.get('WALMART_KEY')
+
 @app.route('/', methods=[ "GET"])
 def search():
     return render_template("search.html")
@@ -95,7 +99,7 @@ def ingredient_lookup(ndbno):
 def get_additives():
     response = requests.get("https://vx-e-additives.p.mashape.com/additives?locale=en&order=asc&sort=last_update",
       headers={
-        "X-Mashape-Key": "xSEQIb1gTTmshMeAu6VHKTQwea6cp1vQLqsjsnv1Bgx0gMeyl6",
+        "X-Mashape-Key": mashape_key,
         "Accept": "application/json"
       }
     )
@@ -105,7 +109,7 @@ def get_additives():
 def additive_function(code):
     response = requests.get("https://vx-e-additives.p.mashape.com/additives/951?locale=en",
       headers={
-        "X-Mashape-Key": "xSEQIb1gTTmshMeAu6VHKTQwea6cp1vQLqsjsnv1Bgx0gMeyl6",
+        "X-Mashape-Key": mashape_key,
         "Accept": "application/json"
       }
     )
@@ -115,7 +119,7 @@ def additive_function(code):
 def additive_lookup(code):
     response = requests.get('https://vx-e-additives.p.mashape.com/additives/' + code,
         headers={
-        "X-Mashape-Key": "xSEQIb1gTTmshMeAu6VHKTQwea6cp1vQLqsjsnv1Bgx0gMeyl6",
+        "X-Mashape-Key": mashape_key,
         "Accept": "application/json"
         }
     )
@@ -125,7 +129,7 @@ def additive_lookup(code):
 def upc_lookup(upcode):
     response = requests.get("http://api.walmartlabs.com/v1/items?",
         headers={
-            "apiKey": "qkwugbctetqe4t6yweybcdx9",
+            "apiKey": walmart_key,
             "format": "json",
             "upc": upcode
         }
