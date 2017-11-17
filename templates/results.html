@@ -5,44 +5,30 @@
     <img src="{{url_for('static', filename='images/pile.jpg')}}">
   </div>
 
-<div class="panel-body">
-  		<table class="table table-bordered sortable" data-sid="{{sid}}">
-  		<thead>
-  		<script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
-  		<script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
-  			<tr class="brand-name-desc"></tr>
-		</thead>
-			{% for s in product_obj %}
-				<tr class="rows" style="width: inherit">
-					<td class="brand-name">
-						{{s[:-18]}}
-					</td>
-				</tr>
 
-		
-				<tr class="additives additives-hidden" id="{{s[-12:]}}">
-					<td>
-						<div class="container">
-							<div class="row">
-								<div class="col-xs-6">
-									{{product_obj[s]}}
-								</div>
-						      	<div class="col-xs-6">
-						      		<ul>
-									{% for i in additive_list %}
-										{% if i.upper() in product_obj[s] %}
-						      			<li>{{i}}</li>
-							      		{% endif %}
-							      	{% endfor %}
-						      		</ul>
-						      	</div>
-						    </div>
-						</div>
-					</td>
-				</tr>
+<div id="result-box">
+	<!-- Product Display -->
+	<div id="products-box">
+		<ul id="products">
+			{% for s in product_obj %}
+			<li>
+				{{s[:-18]}}
+			</li>
 			{% endfor %}
-		</table>
-	</div>	
+		</ul>
+	</div>
+
+	<!-- Ingredient Display -->
+	<div id="ingredient-box">
+		<ul>
+			<li>blah</li>
+			<li>blah</li>
+			<li>blah</li>
+			<li>blah</li>
+			<li>blah</li>
+		</ul>
+	</div>
+</div>
 
 
 

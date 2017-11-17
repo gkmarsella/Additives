@@ -1,83 +1,43 @@
 body {
 	background-color: #ecf0f1;
+	height: 100%;
 }
 
-.foodimage {
-	display: none;
+/*Results Page*/
+
+#result-box {
+	display: flex;
 }
 
-.foodname:hover{
-	cursor: pointer;
-}
+/*Products Column*/
 
-.rows:hover {
-	color: #d4dbff;
-	cursor: pointer;
-}
-
-.rows {
-	background-color: rgba(9, 13, 16, 0.47);
-	color: #F1FAEE;
-}
-
-.brand-name-desc {
-	background-color: #2c3e50;
-	color: #ffffff;
-}
-
-a {
-	color: black;
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Chrome/Safari/Opera */
-	-khtml-user-select: none; /* Konqueror */
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none; /* Non-prefixed version, currently
-	                  not supported by any browser */
-}
-
-td {
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Chrome/Safari/Opera */
-	-khtml-user-select: none; /* Konqueror */
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none; /* Non-prefixed version, currently
-	                      not supported by any browser */
-}
-
-a:hover {
-	text-decoration: none;
-	color: black;
-}
-
-.brand {
-	width: 20%
-}
-
-.name {
+#products-box {
+	display: flex;
+	height: 100vh;
+	background-color: #ff5722;
+	color: white;
 	width: 30%;
+	margin-top: 5.3%;
 }
 
-.decription {
-	width: 50%;
+#products {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
-.rows {
-    background-color: rgba(0, 0, 0, 0.39);
+/*Ingredients Column*/
+
+#ingredient-box{
+	background-color: white;
+	height: 100vh;
+	width: 70%;
+	margin-top: 5.3%;
 }
 
-.additives-hidden {
-	display: none;
-}
 
-.bimage {
-	width: 100%;
-}
-
-/*body {
-	background-color: #E7DEC0;
-}*/
+/*SEARCH*/
 
 .search-bar {
 	margin-top: 100px;
@@ -92,17 +52,6 @@ h3 {
 
 }
 
-
-/* for my additives table */
-
-.additives {
-    background-color: rgba(86, 52, 33, 0.62);
-    color: rgb(255, 255, 255);
-}
-
-
-
-
 #searchbar {
 	width: 70%;
 	margin-left: 15%;
@@ -112,11 +61,16 @@ h3 {
 	margin: 0 auto;
 }
 
+/*NAV*/
 .navbar-brand > img {
 	display: block;
 	height: 32px;
 	width: 34px;
 }	
+
+#nav-elements {
+	float: right;
+}
 
 #bg {
 	position: fixed; 
@@ -153,11 +107,6 @@ h3 {
 	font-family: initial;
 }
 
-#description-box {
-	width: 60%;
-	padding-top: 4%;
-}
-
 #search-box {
 	padding-top: 8%;
 }
@@ -171,13 +120,8 @@ h3 {
      } 
 } 
 
-body {
-  padding-top: 10%;
-}
 
-#nav-elements {
-	float: right;
-}
+/*Landing Page*/
 
 .login-button {
 	color: white;
@@ -217,16 +161,6 @@ body {
 	float: left;
 }
 
-
-/*TABLES*/
-
-#food-table {
-	width: 20%
-}
-
-.container {
-	width: inherit;
-}
 
 /*MODAL*/
 
