@@ -66,24 +66,48 @@ def results():
             ingredients.append(ingredient_lookup(i)['report']['food']['ing']['desc'])
         except (json.decoder.JSONDecodeError, KeyError) as e:
             ingredients.append("No ingredients found")
-
-    # combined = list(zip(products, ingredients))
-
     
     counter = 0
     product_obj = {}
+    # setting key object pairs of foods upc to its ingredients for lookup
+    upc_ingredients = {}
     while prodlength > counter:
         for i in products:
-            product_obj[i] = ingredients[counter]  
+            product_obj[i] = ingredients[counter]
+            upc_ingredients[i] = ingredients[counter]
             counter = counter+1
 
     # list of all additives in DB
+
     additive_list = {}
     for i in get_additives():
         additive_list[i['name']] = i['code']
 
 
-    return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list, ingredients=ingredients)
+    # new product lookup
+
+    product_ndbno = {}
+    for i in product_list:
+        product_ndbno[i['name']] = i['ndbno']
+
+    return render_template("results.html", search=search, product_obj=product_obj, additive_list=additive_list, ingredients=ingredients, product_ndbno=product_ndbno)
+
+
+@app.route('/get_ingredients', methods=["POST"])
+def get_ingredients():
+    ndbno = request.json
+    search_ndbno_dict = {
+        "ndbno": ndbno,
+        "type": "f",
+        "api_key": usda_key,
+        "format": "json",
+    }
+    search_ndbno_response = requests.get("https://api.nal.usda.gov/ndb/reports", params=search_ndbno_dict)
+    search_ndbno = search_ndbno_response.json()
+    ingredients = search_ndbno['report']['food']['ing']['desc']
+    return jsonify({'search_ndbno': search_ndbno})
+
+
 
 def ingredient_lookup(ndbno):
     search_ndbno_dict = {

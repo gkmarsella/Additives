@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+
   <div id="bg">
     <img src="{{url_for('static', filename='images/pile.jpg')}}">
   </div>
@@ -10,9 +15,9 @@
 	<!-- Product Display -->
 	<div id="products-box">
 		<ul id="products">
-			{% for s in product_obj %}
-			<li>
-				{{s[:-18]}}
+			{% for name in product_ndbno %}
+			<li class="prod-name" id={{product_ndbno[name]}}>
+				{{name[:-18]}}
 			</li>
 			{% endfor %}
 		</ul>
@@ -20,16 +25,38 @@
 
 	<!-- Ingredient Display -->
 	<div id="ingredient-box">
-		<ul>
-			<li>blah</li>
-			<li>blah</li>
-			<li>blah</li>
-			<li>blah</li>
-			<li>blah</li>
-		</ul>
+		<div id="root">
+			
+		</div>
 	</div>
 </div>
 
+<!-- REACT -->
+ <!--    <script type="text/babel">
+
+    class Ingredients extends React.Component{
+
+    	render(){
+    	return (
+    	
+			<ul>
+				{% for s in products %}
+					<li></li><
+				{% endfor %}
+				
+			</ul>
+		
+    	)
+    }
+		
+    }
+
+      ReactDOM.render(
+        <Ingredients/>,
+        document.getElementById('root')
+      );
+
+    </script> -->
 
 
 {% endblock %}
