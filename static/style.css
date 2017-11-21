@@ -7,6 +7,7 @@ body {
 
 #result-box {
 	display: flex;
+	cursor: pointer;
 }
 
 /*Products Column*/
@@ -26,6 +27,8 @@ body {
 	flex-direction: column;
 	justify-content: space-around;
 }
+
+
 
 /*Ingredients Column*/
 

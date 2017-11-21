@@ -12,7 +12,17 @@ $(function(){
 			contentType: 'application/json',
 			dataType: 'json',
 			success: function(data){
-				console.log(data.search_ndbno['report']['food']['ing']['desc'])
+				$('#ingredient-list').html((data.search_ndbno['report']['food']['ing']['desc']));
+
+				$('#additive-list').html('');
+
+				var allAdditives = data.additives;
+				console.log(allAdditives)
+
+				allAdditives.forEach(function(i){
+					$('#additive-list').append('<li>' + i + '</li>')
+				})
+					
 			}
 		})
 	})
