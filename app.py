@@ -6,6 +6,7 @@ import os
 import requests
 import urllib.request
 import json
+from all_additives import all_additives
 
 
 app = Flask(__name__)
@@ -98,13 +99,10 @@ def get_ingredients():
     search_ndbno_response = requests.get("https://api.nal.usda.gov/ndb/reports", params=search_ndbno_dict)
     search_ndbno = search_ndbno_response.json()
 
-    additive_list = get_additives()
-    all_additives = []
-    for i in additive_list:
-        all_additives.append(i['name'])
+    additive_list = all_additives
 
     additives = []
-    for ingredient in all_additives:
+    for ingredient in additive_list:
         if ingredient.upper() in search_ndbno['report']['food']['ing']['desc']:
             additives.append(ingredient)
 
@@ -123,15 +121,15 @@ def ingredient_lookup(ndbno):
     search_ndbno = search_ndbno_response.json()
     return search_ndbno
 
-def get_additives():
-    response = requests.get("https://vx-e-additives.p.mashape.com/additives?locale=en&order=asc&sort=last_update",
-      headers={
-        "X-Mashape-Key": mashape_key,
-        "Accept": "application/json"
-      }
-    )
+# def get_additives():
+#     response = requests.get("https://vx-e-additives.p.mashape.com/additives?locale=en&order=asc&sort=last_update",
+#       headers={
+#         "X-Mashape-Key": mashape_key,
+#         "Accept": "application/json"
+#       }
+#     )
 
-    return response.json()
+#     return response.json()
 
 def additive_function(code):
     response = requests.get("https://vx-e-additives.p.mashape.com/additives/951?locale=en",
