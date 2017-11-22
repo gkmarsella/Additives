@@ -366,4 +366,5 @@ all_additives = ['Curcuma (turmeric)',
  'Quillaia extract',
  'RED 40',
  'RED 40 LAKE',
+ 'RED40'
  ]

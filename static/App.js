@@ -1,8 +1,6 @@
 
 $(function(){
 
-	$("[data-toggle=popover]").popover();
-
 	$(".prod-name").click(function(e){
 		var $clicked = $(this).attr('id')
 		var ndb = $clicked
@@ -25,7 +23,8 @@ $(function(){
 
 
 				for(var key in addInfo){
-					$('#additive-list').append('<li>'+'<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="' + key + '" data-content="Description: ' + (addInfo[key]["description"]) + '">' + key + '</button></li>');
+					$('#additive-list').append('<li>'+'<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-trigger="focus" data-html="true" title="' + key + '" data-content="' + '<strong>Description</strong>:<br>' + (addInfo[key]["description"]) + '<hr>' + '<strong>Uses</strong>:<br>' + (addInfo[key]["uses"]) + '<hr>' + '<strong>Toxicity</strong>:<br>' + (addInfo[key]["toxicity"]) + '">' + key + '</button></li>');
+					$('[data-toggle="popover"]').popover();
 				}
 
 				// allAdditives.forEach(function(i){
