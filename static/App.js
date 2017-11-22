@@ -1,6 +1,7 @@
 
 $(function(){
 
+	$("[data-toggle=popover]").popover();
 
 	$(".prod-name").click(function(e){
 		var $clicked = $(this).attr('id')
@@ -17,11 +18,21 @@ $(function(){
 				$('#additive-list').html('');
 
 				var allAdditives = data.additives;
-				console.log(allAdditives)
+				
+				var addInfo = data.additive_information;
 
-				allAdditives.forEach(function(i){
-					$('#additive-list').append('<li>' + i + '</li>')
-				})
+				var description = "description";
+
+
+				for(var key in addInfo){
+					$('#additive-list').append('<li>'+'<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="' + key + '" data-content="Description: ' + (addInfo[key]["description"]) + '">' + key + '</button></li>');
+				}
+
+				// allAdditives.forEach(function(i){
+				// 	$('#additive-list').append('<li>' + i + '</li>')
+				// });
+
+
 					
 			}
 		})

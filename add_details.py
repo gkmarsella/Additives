@@ -1,0 +1,16 @@
+add_details = {
+
+    'RED40':{
+        'description': "Red40 is a chemical compound that comes from coal tars",
+        'uses': 'RED40 is used as a food dye',
+        'toxicity': 'Can cause hyperactivity in children. Some experts suggest it can cause cancer',
+        'picture': "RED40.png"
+    },
+
+    'NIACIN':{
+        'description': "Niacin is a water-soluble B vitamin also known as vitamin B3",
+        'uses': 'Niacin is added to foods to increase the products micronutrients',
+        'toxicity' : 'Niacin is safe for consumption',
+        'picture': 'niacin.jpg' 
+    }
+}

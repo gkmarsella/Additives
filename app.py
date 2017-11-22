@@ -7,6 +7,7 @@ import requests
 import urllib.request
 import json
 from all_additives import all_additives
+from add_details import add_details
 
 
 app = Flask(__name__)
@@ -84,6 +85,8 @@ def results():
     for i in product_list:
         product_ndbno[i['name']] = i['ndbno']
 
+
+
     return render_template("results.html", search=search, product_obj=product_obj, ingredients=ingredients, product_ndbno=product_ndbno)
 
 
@@ -106,7 +109,14 @@ def get_ingredients():
         if ingredient.upper() in search_ndbno['report']['food']['ing']['desc']:
             additives.append(ingredient)
 
-    return jsonify({'search_ndbno': search_ndbno, 'additives': additives})
+    additive_details = add_details
+
+    additive_information = {}
+    for i in additives:
+        if i.upper() in additive_details:
+            additive_information[i] = additive_details[i.upper()]
+
+    return jsonify({'search_ndbno': search_ndbno, 'additives': additives, 'additive_information': additive_information})
 
 
 
