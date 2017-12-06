@@ -1,19 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_modus import Modus
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 import sys
 import os
 import requests
 import urllib.request
 import json
-from all_additives import all_additives
 from add_details import add_details
+
 
 
 app = Flask(__name__)
 api = Modus(app)
-
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost/additive-db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)X-Mashape-Key
 
 usda_key = app.config['USDA_KEY'] = os.environ.get('USDA_KEY')
 
@@ -24,9 +26,8 @@ walmart_key = app.config['WALMART_KEY'] = os.environ.get('WALMART_KEY')
 @app.route('/', methods=[ "GET"])
 def search():
     return render_template("search.html")
-
-
-@app.route('/results', methods=["GET"])
+    
+@app.route('/results', methods=["GET", "POST"])
 def results():
 
 
@@ -85,8 +86,6 @@ def results():
     for i in product_list:
         product_ndbno[i['name']] = i['ndbno']
 
-
-
     return render_template("results.html", search=search, product_obj=product_obj, ingredients=ingredients, product_ndbno=product_ndbno)
 
 
@@ -102,19 +101,16 @@ def get_ingredients():
     search_ndbno_response = requests.get("https://api.nal.usda.gov/ndb/reports", params=search_ndbno_dict)
     search_ndbno = search_ndbno_response.json()
 
-    additive_list = all_additives
-
+# searching through added additives
     additives = []
-    for ingredient in additive_list:
+    for ingredient in add_details:
         if ingredient.upper() in search_ndbno['report']['food']['ing']['desc']:
             additives.append(ingredient)
 
-    additive_details = add_details
-
     additive_information = {}
     for i in additives:
-        if i.upper() in additive_details:
-            additive_information[i] = additive_details[i.upper()]
+        if i.upper() in add_details:
+            additive_information[i] = add_details[i.upper()]
 
     return jsonify({'search_ndbno': search_ndbno, 'additives': additives, 'additive_information': additive_information})
 

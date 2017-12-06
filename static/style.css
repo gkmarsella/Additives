@@ -3,6 +3,15 @@ body {
 	height: 100%;
 }
 
+footer {
+	background-color: #080000b3;
+	color: white;
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	
+}
 /*Results Page*/
 
 #result-box {

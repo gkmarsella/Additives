@@ -2,14 +2,15 @@ import psycopg2
 import psycopg2.extras
 
 def connect():
-    c = psycopg2.connect("dbname=fadditives")
+    c = psycopg2.connect("dbname=additive-db")
     return c
 
 
-def search_food(brand, name, ingredients):
+def additive_database(name, description, uses, toxicity):
     conn = connect()
     cur = conn.cursor()
-    cur.execute("INSERT INTO snacks (brand, name, ingredients) VALUES (%s, %s, %s)", (brand, name, ingredients))
-    conn.commit()
+    cur.execute("SELECT * FROM additive_db")
+    additive_db = cur.fetchall()
     cur.close()
     conn.close()
+    return additive_db
