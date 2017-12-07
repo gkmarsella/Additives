@@ -19,5 +19,13 @@ add_details = {
         'uses': 'It is a powerful thickening agent, and also has uses as a stabilizer to prevent ingredients from separating.',
         'toxicity': 'Xanthan Gum is recognized as safe',
         'picture': 'xanthangum.jpg'
+    },
+
+    'DATEM':{
+        'description': 'DATEM stands for Diacetyl Tartaric Acid Esters of Monoglycerides. It can be found in processed bread products.',
+        'uses': 'DATEM is used as an emulsifier or dough conditioner.',
+        'toxicity': 'Animal studies have shown DATEM can cause heart fibrosis and adrenal overgrowth'
     }
+
+
 }

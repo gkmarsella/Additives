@@ -15,7 +15,7 @@ app = Flask(__name__)
 api = Modus(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost/additive-db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)X-Mashape-Key
+db = SQLAlchemy(app)
 
 usda_key = app.config['USDA_KEY'] = os.environ.get('USDA_KEY')
 
@@ -26,7 +26,15 @@ walmart_key = app.config['WALMART_KEY'] = os.environ.get('WALMART_KEY')
 @app.route('/', methods=[ "GET"])
 def search():
     return render_template("search.html")
+
+@app.route('/references', methods=[ "GET"])
+def references():
+    return render_template("references.html")
     
+@app.route('/about', methods=["GET"])
+def about():
+    return render_template("about.html")
+
 @app.route('/results', methods=["GET", "POST"])
 def results():
 
