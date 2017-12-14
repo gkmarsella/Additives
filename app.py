@@ -93,7 +93,12 @@ def results():
 
     product_ndbno = {}
     for i in product_list:
-        product_ndbno[i['name']] = i['ndbno']
+        checkGTIN = re.search(r"\bGTIN\b", i['name'])
+        checkUPC = re.search(r"\bUPC\b", i['name'])
+        if checkGTIN:
+            product_ndbno[i['name'][:-22]] = i['ndbno']
+        if checkUPC:
+            product_ndbno[i['name'][:-19]] = i['ndbno']
 
     return render_template("results.html", search=search, product_obj=product_obj, ingredients=ingredients, product_ndbno=product_ndbno)
 
