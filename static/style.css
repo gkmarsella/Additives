@@ -6,7 +6,6 @@ body {
 footer {
 	background-color: #080000b3;
 	color: white;
-	position: fixed;
 	left: 0px;
 	bottom: 0px;
 	width: 100%;
@@ -19,19 +18,28 @@ footer {
 	cursor: pointer;
 }
 
+.prod-name {
+	padding: 10px;
+}
+
+.prod-name:hover {
+	background-color: black;
+}
+
 /*Products Column*/
 
 #products-box {
-	display: flex;
 	height: 100vh;
 	background-color: #ff5722;
 	color: white;
 	width: 30%;
 	margin-top: 5.3%;
+	overflow: scroll;
 }
 
 #products {
 	list-style: none;
+	padding-left: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;

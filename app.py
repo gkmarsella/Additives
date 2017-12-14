@@ -7,6 +7,7 @@ import os
 import requests
 import urllib.request
 import json
+import re
 from add_details import add_details
 
 
@@ -43,7 +44,7 @@ def results():
     search_dict = {
         "q": request.args.get('search-food').lower(), 
         "sort":"n", 
-        "max": "10",
+        "max": "50",
         "api_key": usda_key,
         "format": "json",
     }
