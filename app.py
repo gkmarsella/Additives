@@ -89,7 +89,8 @@ def results():
             upc_ingredients[i] = ingredients[counter]
             counter = counter+1
 
-    # new product lookup
+
+    # putting names and unique codes in an object
 
     product_ndbno = {}
     for i in product_list:
