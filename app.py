@@ -36,10 +36,17 @@ def references():
 def about():
     return render_template("about.html")
 
+# Using walmart api to find pictures based on UPC
+def picture_lookup(upc):
+    upc_lookup = requests.get("http://api.walmartlabs.com/v1/items?apiKey=" + walmart_key + "&upc=" + upc)
+    product = upc_lookup.json()
+    result = product['items'][0]['imageEntities'][0]['thumbnailImage']
+
+    return result
+
+# Results page
 @app.route('/results', methods=["GET", "POST"])
 def results():
-
-
     # searching for foods
     search_dict = {
         "q": request.args.get('search-food').lower(), 
@@ -96,10 +103,13 @@ def results():
     for i in product_list:
         checkGTIN = re.search(r"\bGTIN\b", i['name'])
         checkUPC = re.search(r"\bUPC\b", i['name'])
+        temp = []
         if checkGTIN:
-            product_ndbno[i['name'][:-22]] = i['ndbno']
+            product_ndbno[i['name'][:-22]] = [i['ndbno'],'no_image']
         if checkUPC:
-            product_ndbno[i['name'][:-19]] = i['ndbno']
+            product_ndbno[i['name'][:-19]] = [i['ndbno'],picture_lookup(i['name'][-12:])]
+
+    from IPython import embed; embed();
 
     return render_template("results.html", search=search, product_obj=product_obj, ingredients=ingredients, product_ndbno=product_ndbno)
 
@@ -128,7 +138,6 @@ def get_ingredients():
             additive_information[i] = add_details[i.upper()]
 
     return jsonify({'search_ndbno': search_ndbno, 'additives': additives, 'additive_information': additive_information})
-
 
 
 def ingredient_lookup(ndbno):
