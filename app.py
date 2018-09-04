@@ -11,7 +11,6 @@ import re
 from add_details import add_details
 
 
-
 app = Flask(__name__)
 api = Modus(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost/additive-db'
@@ -40,8 +39,10 @@ def about():
 def picture_lookup(upc):
     upc_lookup = requests.get("http://api.walmartlabs.com/v1/items?apiKey=" + walmart_key + "&upc=" + upc)
     product = upc_lookup.json()
-    result = product['items'][0]['imageEntities'][0]['thumbnailImage']
-
+    try:
+        result = product['items'][0]['imageEntities'][0]['thumbnailImage']
+    except:
+        result = 'No available images'
     return result
 
 # Results page
@@ -96,20 +97,19 @@ def results():
             upc_ingredients[i] = ingredients[counter]
             counter = counter+1
 
-
     # putting names and unique codes in an object
-
     product_ndbno = {}
     for i in product_list:
         checkGTIN = re.search(r"\bGTIN\b", i['name'])
         checkUPC = re.search(r"\bUPC\b", i['name'])
-        temp = []
         if checkGTIN:
             product_ndbno[i['name'][:-22]] = [i['ndbno'],'no_image']
         if checkUPC:
-            product_ndbno[i['name'][:-19]] = [i['ndbno'],picture_lookup(i['name'][-12:])]
-
-    from IPython import embed; embed();
+            try:
+                temp = picture_lookup(i['name'][-12:])
+            except:
+                temp = 'no_image'
+            product_ndbno[i['name'][:-19]] = [i['ndbno'],temp]
 
     return render_template("results.html", search=search, product_obj=product_obj, ingredients=ingredients, product_ndbno=product_ndbno)
 

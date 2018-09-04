@@ -16,7 +16,7 @@
 	<div id="products-box">
 		<ul id="products">
 			{% for name in product_ndbno %}
-			<li class="prod-name" id={{product_ndbno[name]}}>
+			<li class="prod-name" id={{product_ndbno[name][0]}}>
 				{{name}}
 				<img src="{{product_ndbno[name][1]}}" alt="">
 			</li>

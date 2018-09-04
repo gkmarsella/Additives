@@ -1,0 +1,25 @@
+{
+  "name": "css-calc-mixin",
+  "authors": [
+    "Dale Sande <dale.sande@gmail.com>"
+  ],
+  "ignore": [
+    ".gitignore",
+    "bower.json",
+    "**/*.md"
+  ],
+  "description": "This mixin makes it easer to use the CSS calc function and pass in values that need to be processed by Sass, mainly em() functions.",
+  "main": "_css-calc-mixin.scss",
+  "license": "MIT",
+  "homepage": "https://github.com/anotheruiguy/css-calc-mixin",
+  "_release": "e62ae6d47b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e62ae6d47b522c2297f7dcb278a2872f66fe5486"
+  },
+  "_source": "https://github.com/anotheruiguy/css-calc-mixin.git",
+  "_target": "*",
+  "_originalSource": "css-calc-mixin",
+  "_direct": true
+}

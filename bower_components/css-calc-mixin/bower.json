@@ -1,0 +1,15 @@
+{
+  "name": "css-calc-mixin",
+  "version": "0.1.0",
+  "authors": [
+    "Dale Sande <dale.sande@gmail.com>"
+  ],
+  "ignore": [
+    ".gitignore",
+    "bower.json",
+    "**/*.md"
+  ],
+  "description": "This mixin makes it easer to use the CSS calc function and pass in values that need to be processed by Sass, mainly em() functions.",
+  "main": "_css-calc-mixin.scss",
+  "license": "MIT"
+}
