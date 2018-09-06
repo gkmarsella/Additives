@@ -2,10 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_modus import Modus
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-import sys
 import os
 import requests
-import urllib.request
 import json
 import re
 from add_details import add_details

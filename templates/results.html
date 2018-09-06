@@ -17,8 +17,12 @@
 		<ul id="products">
 			{% for name in product_ndbno %}
 			<li class="prod-name" id={{product_ndbno[name][0]}}>
-				{{name}}
-				<img src="{{product_ndbno[name][1]}}" alt="">
+				<div id="product-image-box">
+					<img src="{{product_ndbno[name][1]}}" id="product-image" alt="">
+				</div>
+				<div id="product-text">
+					{{name}}
+				</div>
 			</li>
 			{% endfor %}
 		</ul>

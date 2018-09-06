@@ -27,18 +27,22 @@ footer {
 }
 
 .prod-name {
+	background-color: #cacaca;
 	padding: 10px;
-}
-
-.prod-name:hover {
-	background-color: #00000024;
+	border: black;
+	border-style: solid;
+	border-width: 1px;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	white-space: nowrap;
 }
 
 /*Products Column*/
 
 #products-box {
 	height: 100vh;
-	background-color: #ff5722;
+	padding-left: 5px;
+	background-color: white;
 	color: white;
 	width: 30%;
 	margin-top: 5.3%;
@@ -53,7 +57,18 @@ footer {
 	justify-content: space-around;
 }
 
+#product-image-box {
+	display: inline-block;;
+	width: 75px;
+}
 
+#product-text {
+	color: black;
+}
+
+#product-image {
+	width: 70%;
+}
 
 /*Ingredients Column*/
 
